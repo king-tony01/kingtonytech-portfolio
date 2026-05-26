@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kingtonytech.com"),
+  metadataBase: new URL("https://kingtonytech-portfolio.vercel.app"),
   title:
     "Okolie Amauche Anthony | Founder & Core Systems Architect | KingTony Technologies",
   description:
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
       "Okolie Amauche Anthony | Founder & Core Systems Architect | KingTony Technologies",
     description:
       "Explore the interactive 3D engineering portfolio of Okolie Amauche Anthony, Founder of KingTony Technologies. Low-latency systems and WebGL visualizations.",
-    url: "https://kingtonytech.com",
+    url: "https://kingtonytech-portfolio.vercel.app",
     siteName: "KingTony Technologies",
     images: [
       {
