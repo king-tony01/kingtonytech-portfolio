@@ -1,0 +1,374 @@
+.section {
+  padding: 80px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 48px;
+  }
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 36px;
+  }
+}
+
+.titleBar {
+  width: 6px;
+  height: 24px;
+  background-color: var(--emerald-primary);
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  max-width: 512px;
+}
+
+.grid {
+  display: grid;
+  grid-template-cols: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-cols: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(16, 185, 129, 0.05);
+}
+
+/* Card Graphic Visual Top box */
+.visualBox {
+  width: 100%;
+  height: 176px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 1. LUMINAR WIREFRAME GRAPHIC */
+.cubeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.cubeCanvas {
+  border-radius: 6px;
+}
+
+.cubeControls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+}
+
+.cubeBtn {
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: var(--emerald-deep);
+  color: var(--emerald-light);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.cubeBtn:hover {
+  border-color: var(--emerald-primary);
+}
+
+.cubeFps {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+/* 2. NOVA DNS LATENCY GRAPHIC */
+.dnsBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--amber-light);
+}
+
+.dnsHeader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.12);
+  padding-bottom: 4px;
+  color: var(--text-muted);
+}
+
+.dnsLogs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  margin-top: 6px;
+  max-height: 96px;
+  color: rgba(253, 224, 71, 0.8);
+}
+
+.dnsLogLine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dnsButton {
+  width: 100%;
+  margin-top: 6px;
+  padding: 4px 0;
+  text-align: center;
+  background-color: rgba(245, 158, 11, 0.05);
+  color: var(--amber-light);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.dnsButton:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: var(--amber-light);
+}
+
+.dnsButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 3. HYPERION BLOCKSTREAM LEDGER */
+.ledgerBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+}
+
+.ledgerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  padding-bottom: 6px;
+  font-size: 8px;
+  color: var(--text-muted);
+}
+
+.ledgerStream {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.ledgerBlockRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: blockPulse 2s infinite ease-in-out;
+}
+
+.blockHeight {
+  color: var(--emerald-light);
+}
+
+.blockHash {
+  color: var(--text-muted);
+}
+
+.blockValue {
+  color: var(--amber-light);
+  font-weight: 700;
+}
+
+.ledgerFooter {
+  font-size: 7px;
+  color: rgba(16, 185, 129, 0.3);
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(16, 185, 129, 0.08);
+  padding-top: 4px;
+}
+
+/* Bottom visual texts detailed elements */
+.cardDetails {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardCategory {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--emerald-light);
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cardDesc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.625;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(16, 185, 129, 0.03);
+  border: 1px solid rgba(16, 185, 129, 0.06);
+  color: var(--text-secondary);
+}
+
+/* Bottom Actions links Row styling */
+.cardActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(16, 185, 129, 0.1);
+  padding-top: 16px;
+  margin-top: 4px;
+}
+
+.gitLink {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.gitLink:hover {
+  color: #ffffff;
+}
+
+.gitIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.liveLink {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amber-light);
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.liveLink:hover {
+  color: #ffffff;
+}
+
+.arrowIcon {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+}
+
+@keyframes blockPulse {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}

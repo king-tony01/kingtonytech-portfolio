@@ -1,0 +1,428 @@
+.section {
+  padding: 80px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 48px;
+  }
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 36px;
+  }
+}
+
+.titleBar {
+  width: 6px;
+  height: 24px;
+  background-color: var(--emerald-primary);
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  max-width: 512px;
+}
+
+.grid {
+  display: grid;
+  grid-template-cols: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-cols: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-cols: repeat(4, 1fr);
+  }
+}
+
+/* Card classes */
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+  transition: var(--transition-smooth);
+}
+
+.cardMesh {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.02), transparent 50%);
+  pointer-events: none;
+}
+
+.cardGraphic {
+  width: 100%;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(16, 185, 129, 0.06);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+
+.cardSubtitle {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.subtitleEmerald {
+  color: var(--emerald-light);
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.subtitleAmber {
+  color: var(--amber-light);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.card:hover .cardTitle {
+  color: #ffffff;
+}
+
+.cardDesc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.625;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tag {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(16, 185, 129, 0.04);
+  border: 1px solid rgba(16, 185, 129, 0.08);
+  color: var(--text-secondary);
+  transition: border-color 0.2s ease;
+}
+
+.card:hover .tag {
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+/* Custom interactive UI: Systems address debugger */
+.memoryLayout {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--emerald-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.memoryHeader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  padding-bottom: 6px;
+  color: var(--text-muted);
+}
+
+.memoryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memoryAddress {
+  color: var(--amber-light);
+}
+
+.memoryStatusRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(16, 185, 129, 0.08);
+  padding-top: 4px;
+  margin-top: 4px;
+}
+
+.pingDot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--emerald-primary);
+  border-radius: 50%;
+  animation: pingGlow 1.2s infinite ease-in-out;
+}
+
+/* Custom interactive UI: Request rate chart */
+.reqGraphLayout {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reqTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.reqRate {
+  color: var(--amber-light);
+  font-weight: 700;
+}
+
+.reqChart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+  height: 56px;
+  padding: 0 8px;
+}
+
+.reqBar {
+  background: linear-gradient(to top, var(--amber-primary), var(--amber-light));
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  width: 100%;
+  transition: height 0.3s ease;
+}
+
+.reqFooterRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* Custom interactive UI: Mini canvas spin visuals */
+.canvasLayout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.spinRing1 {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px dashed rgba(16, 185, 129, 0.5);
+  animation: spin 10s linear infinite;
+}
+
+.spinRing2 {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 1px solid rgba(16, 185, 129, 0.08);
+  animation: spinReverse 18s linear infinite;
+}
+
+.glowingCore {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--amber-primary);
+  border-radius: 50%;
+  animation: corePing 1.5s infinite ease-in-out;
+}
+
+.canvasFps {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(16, 185, 129, 0.6);
+  top: 8px;
+  left: 8px;
+}
+
+.canvasTheta {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(16, 185, 129, 0.6);
+  bottom: 8px;
+  right: 8px;
+}
+
+/* Custom interactive UI: Distributed nodes grids */
+.cloudLayout {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--amber-light);
+}
+
+.cloudGrid {
+  display: grid;
+  grid-template-cols: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.cloudNode {
+  padding: 6px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.nodeName {
+  color: var(--text-muted);
+  font-size: 7px;
+}
+
+.nodePing {
+  color: var(--emerald-light);
+  font-size: 7px;
+}
+
+.cloudFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(16, 185, 129, 0.08);
+  padding-top: 4px;
+  margin-top: 4px;
+  font-size: 8px;
+}
+
+.cloudCap {
+  color: var(--emerald-light);
+}
+
+/* Animations declarations */
+@keyframes pingGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    box-shadow: 0 0 8px var(--emerald-primary);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes corePing {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  70% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
