@@ -21,18 +21,18 @@ export default function GlassHeader() {
   }, []);
 
   const navItems = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#about" },
-    { label: "Core Tech", href: "#capabilities" },
-    { label: "Projects", href: "#projects" },
-    { label: "CLI Console", href: "#terminal" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Core Tech", href: "/#capabilities" },
+    { label: "Projects", href: "/projects" },
+    { label: "CLI Console", href: "/#terminal" },
   ];
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         {/* Brand Logo */}
-        <a href="#hero" className={styles.logo}>
+        <a href="/" className={styles.logo}>
           <div className={styles.logoIcon}>
             {/* Hexagon shape logo via SVG */}
             <svg

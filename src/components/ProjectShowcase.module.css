@@ -1,338 +1,182 @@
 .section {
-  padding: 80px 24px;
-  max-width: 1280px;
+  padding: 6rem 1rem 8rem;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
 }
 
-@media (min-width: 768px) {
-  .section {
-    padding: 80px 48px;
-  }
-}
-
 .titleArea {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 4rem;
 }
 
 .title {
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: 36px;
-  }
+  gap: 1rem;
 }
 
 .titleBar {
-  width: 6px;
-  height: 24px;
-  background-color: var(--emerald-primary);
-  border-radius: 9999px;
   display: inline-block;
+  width: 48px;
+  height: 2px;
+  background: var(--text-secondary);
 }
 
 .subtitle {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-top: 8px;
-  max-width: 512px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  margin-left: 64px;
 }
 
 .grid {
   display: grid;
-  grid-template-cols: 1fr;
-  gap: 32px;
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-cols: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
 }
 
 .card {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid var(--border-glass);
-  border-radius: 12px;
+  background: rgba(10, 10, 10, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: var(--transition-smooth);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
 }
 
 .card:hover {
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(16, 185, 129, 0.05);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
-/* Card Graphic Visual Top box */
+/* Standard Visual Image Box */
 .visualBox {
-  width: 100%;
-  height: 176px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(16, 185, 129, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
+  height: 180px;
+  padding: 16px;
+  background: rgba(4, 4, 4, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
 }
 
-/* 1. LUMINAR WIREFRAME GRAPHIC */
-.cubeBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.cubeCanvas {
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 6px;
+  filter: brightness(0.9) contrast(1.1);
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.cubeControls {
+.projectImage:hover {
+  transform: scale(1.02);
+  filter: brightness(1) contrast(1.2);
+}
+
+.placeholderBox {
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 16px;
-  z-index: 10;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
-.cubeBtn {
-  padding: 2px 8px;
-  border-radius: 4px;
-  background-color: var(--emerald-deep);
-  color: var(--emerald-light);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  cursor: pointer;
-  transition: border-color 0.2s ease;
-}
-
-.cubeBtn:hover {
-  border-color: var(--emerald-primary);
-}
-
-.cubeFps {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-muted);
-}
-
-/* 2. NOVA DNS LATENCY GRAPHIC */
-.dnsBox {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--amber-light);
-}
-
-.dnsHeader {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(245, 158, 11, 0.12);
-  padding-bottom: 4px;
-  color: var(--text-muted);
-}
-
-.dnsLogs {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  overflow-y: auto;
-  margin-top: 6px;
-  max-height: 96px;
-  color: rgba(253, 224, 71, 0.8);
-}
-
-.dnsLogLine {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.dnsButton {
-  width: 100%;
-  margin-top: 6px;
-  padding: 4px 0;
-  text-align: center;
-  background-color: rgba(245, 158, 11, 0.05);
-  color: var(--amber-light);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.dnsButton:hover:not(:disabled) {
-  background-color: rgba(245, 158, 11, 0.1);
-  border-color: var(--amber-light);
-}
-
-.dnsButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* 3. HYPERION BLOCKSTREAM LEDGER */
-.ledgerBox {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 9px;
+.placeholderIcon {
+  width: 32px;
+  height: 32px;
   color: var(--text-secondary);
+  opacity: 0.5;
 }
 
-.ledgerHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
-  padding-bottom: 6px;
-  font-size: 8px;
-  color: var(--text-muted);
+.placeholderText {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
 }
 
-.ledgerStream {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 6px;
-  margin-top: 6px;
-}
-
-.ledgerBlockRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  animation: blockPulse 2s infinite ease-in-out;
-}
-
-.blockHeight {
-  color: var(--emerald-light);
-}
-
-.blockHash {
-  color: var(--text-muted);
-}
-
-.blockValue {
-  color: var(--amber-light);
-  font-weight: 700;
-}
-
-.ledgerFooter {
-  font-size: 7px;
-  color: rgba(16, 185, 129, 0.3);
-  margin-top: 4px;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid rgba(16, 185, 129, 0.08);
-  padding-top: 4px;
-}
-
-/* Bottom visual texts detailed elements */
 .cardDetails {
   padding: 24px;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
+  flex: 1;
+  gap: 24px;
 }
 
 .textGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .cardCategory {
-  font-size: 10px;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--emerald-light);
 }
 
 .cardTitle {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 500;
   color: var(--text-primary);
+  margin: 0;
 }
 
 .cardDesc {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.625;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .tag {
-  font-size: 9px;
-  font-family: var(--font-mono);
-  padding: 2px 8px;
-  border-radius: 4px;
-  background-color: rgba(16, 185, 129, 0.03);
-  border: 1px solid rgba(16, 185, 129, 0.06);
+  font-size: 0.75rem;
   color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 100px;
 }
 
-/* Bottom Actions links Row styling */
 .cardActions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid rgba(16, 185, 129, 0.1);
-  padding-top: 16px;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 .gitLink {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 6px;
-  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
   transition: color 0.2s ease;
-}
-
-.gitLink:hover {
-  color: #ffffff;
+  text-decoration: none;
 }
 
 .gitIcon {
@@ -341,34 +185,49 @@
   fill: currentColor;
 }
 
+.gitLink:hover {
+  color: var(--text-primary);
+}
+
 .liveLink {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--amber-light);
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
   display: flex;
   align-items: center;
   gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
   text-decoration: none;
-  transition: color 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .liveLink:hover {
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .arrowIcon {
   width: 14px;
   height: 14px;
   stroke: currentColor;
-  fill: none;
+  transition: transform 0.2s ease;
 }
 
-@keyframes blockPulse {
-  0%, 100% {
-    opacity: 0.85;
+.liveLink:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
   }
-  50% {
-    opacity: 1;
+  .titleBar {
+    width: 32px;
+  }
+  .subtitle {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 }
