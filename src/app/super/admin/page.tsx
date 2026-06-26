@@ -4,6 +4,8 @@ import AdminClient from "./AdminClient";
 import styles from "./admin.module.css";
 import GlassHeader from "@/components/GlassHeader";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Super Admin | Portfolio Management",
   robots: { index: false, follow: false },
