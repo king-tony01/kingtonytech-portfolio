@@ -11,7 +11,7 @@ interface TerminalLine {
 export default function TerminalPlayground() {
   const [history, setHistory] = useState<TerminalLine[]>([
     { text: "SSH CONNECTION ESTABLISHED TO GATEWAY.KINGTONYTECH.COM:22", type: "success" },
-    { text: "SECURITY PROTOCOL ACTIVE. VERIFIED USER: OKOLIE AMAUCHE ANTHONY (FOUNDER)", type: "success" },
+    { text: "SECURITY PROTOCOL ACTIVE. VERIFIED ENTITY: KINGTONY TECHNOLOGIES (ROOT)", type: "success" },
     { text: "Type 'help' to explore available commands and unlock systems.", type: "output" },
   ]);
   const [inputVal, setInputVal] = useState("");
@@ -25,15 +25,15 @@ export default function TerminalPlayground() {
 
   // File structure mockup
   const fileSystem: Record<string, string> = {
-    "anthony-bio.txt": `===============================================================
-Okolie Amauche Anthony (Founder of KingTony Technologies)
+    "agency-profile.txt": `===============================================================
+KingTony Technologies (Digital Agency)
 ===============================================================
-Role: Core Systems Architect / Full Stack Software Engineer
+Role: Full-Spectrum Digital Agency & Systems Architects
 Mission: Bridging high-performance machine pipelines with elite UI.
-Location: Nigeria & Remote Space
+Location: Imo State, Nigeria & Remote Space
 Philosophy: "Performance is not a feature; it is the core architecture."
-Expertise: Multi-threaded engineering, low-latency API design,
-           3D canvas rendering, and scalable distributed networks.
+Expertise: Scalable distributed systems, low-latency API design,
+           3D UI/UX design, and corporate brand engineering.
 ===============================================================`,
     "skills.json": `{
   "core_languages": ["Rust", "Go", "TypeScript", "C++", "C"],
@@ -46,8 +46,14 @@ Attempting to run 'cat' on this file directly triggers security alarm systems.
 Execute command 'hack' to force bypass the biometric security key override.`
   };
 
+  const isInitialMount = useRef(true);
+
   // Scroll to bottom when history changes
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
@@ -115,7 +121,7 @@ Execute command 'hack' to force bypass the biometric security key override.`
             ...prevHist,
             { text: "BYPASS COMPLETE. SECURE SHELL DECRYPTED.", type: "success" },
             { text: "=========================================================", type: "success" },
-            { text: "ACCESS GRANTED: WELCOME FOUNDER OKOLIE AMAUCHE ANTHONY", type: "warning" },
+            { text: "ACCESS GRANTED: WELCOME KINGTONY TECHNOLOGIES ADMIN", type: "warning" },
             { text: "=========================================================", type: "warning" },
             { text: "SYSTEM STATUS: UNLOCKED. MATRIX SUBSYSTEM NOMINAL.", type: "success" },
           ]);
@@ -135,28 +141,28 @@ Execute command 'hack' to force bypass the biometric security key override.`
     const cmd = inputVal.trim();
     if (!cmd) return;
 
-    const updatedHistory = [...history, { text: `kingtonytech-terminal:~ founder$ ${cmd}`, type: "input" as const }];
+    const updatedHistory = [...history, { text: `kingtonytech-terminal:~ admin$ ${cmd}`, type: "input" as const }];
     const lowerCmd = cmd.toLowerCase();
 
     // Command Parser
     if (lowerCmd === "help") {
       updatedHistory.push({
         text: `Available Core Shell Commands:
-  about       - Detailed summary of Okolie Amauche Anthony.
+  about       - Detailed summary of KingTony Technologies.
   ls          - List file directories in active SSH directory.
   cat [file]  - Display file contents.
   skills      - Dump core technology stack.
-  projects    - Print list of high-performance projects.
+  projects    - Print list of high-performance client deployments.
   matrix      - Activate/deactivate the glowing digital binary waterfall overlay.
   hack        - Decrypt secure SSH node ports & bypass firewalls.
   clear       - Wipe CLI shell logs buffer.
-  email       - Retrieve founder's secure connection channels.`,
+  email       - Retrieve agency's secure connection channels.`,
         type: "output",
       });
     } 
     else if (lowerCmd === "about") {
       updatedHistory.push({
-        text: "Okolie Amauche Anthony is an elite, multi-disciplinary software engineer and architect specializing in scalable distributed architectures, systems infrastructure, and premium interactive web applications. He operates KingTony Technologies to develop enterprise solutions combining mathematical precision with stunning visual art.",
+        text: "KingTony Technologies is a premier digital agency operating at the intersection of high-fidelity design and uncompromising software architecture. Based in Nigeria, we build scalable distributed systems, highly-converting product designs, and corporate brands from the ground up.",
         type: "output"
       });
     }
@@ -196,9 +202,9 @@ Execute command 'hack' to force bypass the biometric security key override.`
   -------------------------------------------------------------
   [1] LUMINAR-3D-ENGINE   - Real-time custom coordinate renderer using raw canvas.
   [2] EDGE-ROUTER-v2     - Multi-threaded DNS query routing gateway in Rust (99.9% SLI).
-  [3] KINGTONY-PORTFOLIO - Glassmorphic high-fidelity engineer portfolio.
+  [3] ENTERPRISE-BRANDING - Complete brand identity and scalable infrastructure setup.
   -------------------------------------------------------------
-  For details, view the 'Projects' section below or visit github.com/KingTonyTech`,
+  For details, view the 'Projects' section via navigation or visit github.com/KingTonyTech`,
         type: "output",
       });
     } 
@@ -226,10 +232,11 @@ Execute command 'hack' to force bypass the biometric security key override.`
     else if (lowerCmd === "email") {
       updatedHistory.push({
         text: `SECURE INCOMING LINK ESTABLISHED:
+  Agency: KingTony Technologies
+  Direct Mail: kingtony3825@gmail.com
+  Direct Line: +234 906 321 3825
   Founder: Okolie Amauche Anthony
-  Direct Mail: amaucheanthony4@gmail.com
-  Company: KingTony Technologies
-  Availability: Recruiting / Strategic Consulting Active`,
+  Availability: Recruiting / Strategic Consulting / Project Contracting Active`,
         type: "success",
       });
     } 
@@ -326,21 +333,24 @@ Execute command 'hack' to force bypass the biometric security key override.`
           })}
           
           {/* CLI input row */}
-          <form onSubmit={handleCommandSubmit} className={styles.inputRow}>
+          <form onSubmit={handleCommandSubmit} className={styles.inputRow} onClick={() => document.getElementById('terminal-cli-input')?.focus()}>
             <span className={styles.promptLabel}>
               kingtonytech-terminal:~ founder$
             </span>
-            <input
-              id="terminal-cli-input"
-              type="text"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-              className={styles.inputField}
-              autoComplete="off"
-              autoFocus
-              placeholder="type help..."
-            />
-            <span className="cursor-blink" style={{ flexShrink: 0 }} />
+            <div className={styles.inputWrapper}>
+              <span className={styles.inputText}>
+                {inputVal ? inputVal : <span className={styles.placeholderText}>type help...</span>}
+              </span>
+              <span className="cursor-blink" style={{ flexShrink: 0 }} />
+              <input
+                id="terminal-cli-input"
+                type="text"
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+                className={styles.hiddenInput}
+                autoComplete="off"
+              />
+            </div>
           </form>
           <div ref={terminalEndRef} />
         </div>

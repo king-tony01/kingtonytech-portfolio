@@ -244,7 +244,7 @@ body {
 
 .cursor-blink {
   display: inline-block;
-  width: 8px;
+  width: 5px;
   height: 15px;
   background-color: var(--emerald-light);
   margin-left: 4px;

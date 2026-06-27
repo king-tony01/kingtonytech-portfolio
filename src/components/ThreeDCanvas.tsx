@@ -255,8 +255,8 @@ export default function ThreeDCanvas({
       const rawX = e.clientX - rect.left;
       const rawY = e.clientY - rect.top;
 
-      mouseRef.current.targetX = rawX - width / 2;
-      mouseRef.current.targetY = rawY - height / 2;
+      mouseRef.current.targetX = rawX;
+      mouseRef.current.targetY = rawY;
       mouseRef.current.active = true;
     };
 
@@ -280,15 +280,16 @@ export default function ThreeDCanvas({
 
       // Give coordinates a minor jolt
       vertices.forEach((v) => {
-        const dx = v.x - (clickX - width / 2);
-        const dy = v.y - (clickY - height / 2);
+        const p = project(v, true);
+        const dx = p.x - clickX;
+        const dy = p.y - clickY;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 200) {
-          const force = (200 - dist) * 0.35;
-          const angle = Math.atan2(dy, dx);
-          v.x += Math.cos(angle) * force;
-          v.y += Math.sin(angle) * force;
-          v.z += (Math.random() - 0.5) * force;
+          const force = (200 - dist) * 0.008;
+          const len = Math.sqrt(v.ox * v.ox + v.oy * v.oy + v.oz * v.oz) || 1;
+          v.x += (v.ox / len) * force * 100;
+          v.y += (v.oy / len) * force * 100;
+          v.z += (v.oz / len) * force * 100;
         }
       });
     };
@@ -353,15 +354,28 @@ export default function ThreeDCanvas({
     };
 
     // 3D to 2D projection
-    const project = (point: Point3D) => {
+    const project = (point: Point3D, isShape: boolean = false) => {
       const cameraDistance = 350;
       // Z-clipping: clip points that are behind or extremely close to the camera plane
       if (point.z <= -cameraDistance + 20) {
         return { x: 0, y: 0, scale: 0 };
       }
-      const scale = cameraDistance / (point.z + cameraDistance);
+      
+      let scale = cameraDistance / (point.z + cameraDistance);
+      let offsetX = 0;
+
+      if (isShape) {
+        const isDesktop = width >= 1024;
+        if (isDesktop) {
+          scale *= 1.9; // A lot bigger on desktop
+          offsetX = width * 0.22; // Shift right to fill empty space
+        } else {
+          scale *= 1.3; // Slightly bigger on mobile
+        }
+      }
+
       return {
-        x: point.x * scale + width / 2,
+        x: point.x * scale + width / 2 + offsetX,
         y: point.y * scale + height / 2,
         scale,
       };
@@ -379,11 +393,20 @@ export default function ThreeDCanvas({
       mouse.x += (mouse.targetX - mouse.x) * ease;
       mouse.y += (mouse.targetY - mouse.y) * ease;
 
-      // Adjust rotation speed depending on mouse activity
-      const currentSpeedMultiplier = speed * (mouse.active ? 1.8 : 1.0);
-      angleX = 0.004 * currentSpeedMultiplier;
-      angleY = 0.006 * currentSpeedMultiplier;
-      angleZ = 0.002 * currentSpeedMultiplier;
+      // Adjust rotation speed based on user preference
+      if (mouse.active) {
+        // Map mouse position (relative to center) to rotation speed so they can inspect it
+        const relX = (mouse.x - width / 2) / (width / 2);
+        const relY = (mouse.y - height / 2) / (height / 2);
+        angleX = relY * 0.015 * speed;
+        angleY = relX * 0.015 * speed;
+        angleZ = 0.001 * speed;
+      } else {
+        // Constant slow rotation
+        angleX = 0.003 * speed;
+        angleY = 0.005 * speed;
+        angleZ = 0.002 * speed;
+      }
 
       // 1. Draw Starfield in background
       stars.forEach((star) => {
@@ -442,24 +465,24 @@ export default function ThreeDCanvas({
         v.y += (v.oy - v.y) * spring;
         v.z += (v.oz - v.z) * spring;
 
-        // Apply mouse distortion / magnetic gravity
+        // Apply smooth outward magnetic repulsion
         if (mouseDistort && mouse.active) {
-          const dx = v.x - mouse.x;
-          const dy = v.y - mouse.y;
+          const p = project(v, true);
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
-            const pull = (180 - dist) * 0.08;
-            const angle = Math.atan2(dy, dx);
-            // Vertices pull slightly toward mouse
-            v.x -= Math.cos(angle) * pull;
-            v.y -= Math.sin(angle) * pull;
-            v.z += (Math.random() - 0.5) * pull * 0.5;
+          if (dist < 160) {
+            const push = (160 - dist) * 0.004;
+            const len = Math.sqrt(v.ox * v.ox + v.oy * v.oy + v.oz * v.oz) || 1;
+            v.x += (v.ox / len) * push * 100;
+            v.y += (v.oy / len) * push * 100;
+            v.z += (v.oz / len) * push * 100;
           }
         }
       });
 
       // Project vertices to screenspace coordinates
-      const projPoints = vertices.map((v) => project(v));
+      const projPoints = vertices.map((v) => project(v, true));
 
       // 4. Draw wireframe edges
       ctx.shadowBlur = 6;

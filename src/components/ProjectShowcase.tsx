@@ -27,8 +27,8 @@ export default function ProjectShowcase({ projects }: { projects: Project[] }) {
 
       <div className={styles.grid}>
         {projects.length === 0 && (
-          <p style={{ color: "var(--text-secondary)" }}>
-            No projects found in the database. Initialize data via the Command CLI or Super Admin Panel.
+          <p style={{ color: "var(--text-secondary)", textAlign: "center", padding: "40px 0" }}>
+            Our project portfolio is currently being updated with recent deployments. Check back soon for new case studies and open-source releases.
           </p>
         )}
 

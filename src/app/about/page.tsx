@@ -24,24 +24,49 @@ export default function AboutPage() {
 
       <main className={styles.main}>
         <section className={styles.aboutSection}>
-          <div className={styles.contentCard}>
+          
+          {/* AGENCY BIO */}
+          <div className={styles.contentCard} style={{ marginBottom: "2rem" }}>
             <div className={styles.headerArea}>
               <div className={styles.badge}>
                 <span className={styles.badgeDot} />
-                ABOUT THE ENGINEER
+                THE AGENCY
               </div>
               <h1 className={styles.title}>
-                Hi, I'm Okolie Amauche <span className={styles.highlight}>Anthony</span>
+                KingTony <span className={styles.highlight}>Technologies</span>
               </h1>
             </div>
 
             <div className={styles.biography}>
               <p>
-                I'm a software engineer from Imo State, Nigeria. I recently graduated from the Federal University of Technology Owerri (FUTO), where I honed my foundational skills in computer science and engineering. 
+                KingTony Technologies is a premier digital agency operating at the intersection of high-fidelity design and uncompromising software architecture. Based in Imo State, Nigeria, our team specializes in building end-to-end digital experiences—from corporate branding and 3D UI/UX design to highly scalable distributed backend systems.
               </p>
               
               <p>
-                I build digital solutions that actually work. My focus is mainly on writing clean, maintainable code and solving complex problems without overengineering them. I enjoy the process of taking an idea from a rough sketch to a fully deployed production application. It's a challenging space, but that's exactly why I love doing it.
+                We believe that a brand's digital presence shouldn't just exist—it should captivate. Whether orchestrating secure cloud infrastructure, developing native mobile applications, or handling enterprise business registrations, our standard remains absolute: we build modern tech companies from the ground up, ensuring that every deployment balances mathematical precision with state-of-the-art visual art.
+              </p>
+            </div>
+          </div>
+
+          {/* FOUNDER BIO */}
+          <div className={styles.contentCard}>
+            <div className={styles.headerArea}>
+              <div className={styles.badge}>
+                <span className={styles.badgeDot} />
+                THE FOUNDER
+              </div>
+              <h2 className={styles.title} style={{ fontSize: "2rem" }}>
+                Okolie Amauche Anthony
+              </h2>
+            </div>
+
+            <div className={styles.biography}>
+              <p>
+                I am the lead systems architect and founder behind KingTony Technologies. I recently graduated from the Federal University of Technology Owerri (FUTO), where I honed my foundational skills in computer science and engineering.
+              </p>
+              
+              <p>
+                I build digital solutions that actually work. My focus is on writing clean, maintainable code and solving complex problems without overengineering them. I enjoy the process of taking an idea from a rough sketch to a fully deployed production application. It's a challenging space, but that's exactly why I love doing it.
               </p>
 
               <p>
@@ -53,6 +78,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+
         </section>
       </main>
     </div>

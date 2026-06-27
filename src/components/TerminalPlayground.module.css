@@ -191,21 +191,38 @@
   user-select: none;
 }
 
-.inputField {
-  background: transparent;
-  border: none;
-  outline: none;
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.inputText {
   color: #ffffff;
   font-family: var(--font-mono);
   font-size: 12px;
-  width: 100%;
-  padding: 0;
-  margin: 0;
+  white-space: pre;
 }
 
-.inputField:focus {
-  outline: none;
+.placeholderText {
+  color: var(--text-muted);
+}
+
+.hiddenInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: text;
+  color: transparent;
+  background: transparent;
   border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
 }
 
 /* Matrix Code Canvas overlay */

@@ -128,18 +128,18 @@ export default function TechGrid() {
           Engineering Pillars
         </h2>
         <p className={styles.subtitle}>
-          The technical core competencies driving high-performance software at KingTony Technologies.
+          The technical core competencies driving high-performance software and scalable architectures for our clients at KingTony Technologies.
         </p>
       </div>
 
       <div className={styles.grid}>
         
-        {/* Card 1: Core Systems Engineering */}
+        {/* Card 1: High-Performance Software */}
         <BentoCard
-          title="Systems Engineering"
-          subtitle="Low-level Core"
-          description="Developing compile-time safe, thread-safe memory models. Optimized data structures and algorithms designed for minimal CPU instructions."
-          tags={["Rust", "C++", "Assembly", "Memory Management", "SIMD"]}
+          title="High-Performance Software"
+          subtitle="Optimized Execution"
+          description="Building robust, lightning-fast software systems to ensure maximum performance, security, and zero-downtime for mission-critical client applications."
+          tags={["System Design", "C++ / Rust", "Memory Safety", "Algorithms", "Security"]}
           glowColor="emerald"
         >
           {/* Custom interactive UI: Active memory address debugger */}
@@ -173,10 +173,10 @@ export default function TechGrid() {
 
         {/* Card 2: Full-Stack Web Architecture */}
         <BentoCard
-          title="Full Stack Architecture"
-          subtitle="Hyper-Scalable Web"
-          description="High-fidelity client models combined with edge rendering, low-latency API gateways, web socket tunnels, and concurrent backend structures."
-          tags={["React 19", "Next.js", "TypeScript", "gRPC", "PostgreSQL"]}
+          title="Full-Stack Web Apps"
+          subtitle="Scalable & Responsive"
+          description="Developing beautiful, responsive web apps. We build custom dashboards, e-commerce platforms, and internal tools tailored exactly to your business logic."
+          tags={["React 19", "Next.js", "TypeScript", "PostgreSQL", "APIs"]}
           glowColor="amber"
         >
           {/* Custom interactive UI: Request performance tracker */}
@@ -206,10 +206,10 @@ export default function TechGrid() {
 
         {/* Card 3: 3D Visualization & Graphics */}
         <BentoCard
-          title="3D Graphics & Canvas"
-          subtitle="GPU-Accelerated VIS"
-          description="Creating advanced WebGL engines, mathematical projections, coordinate mesh grids, matrix spaces, and 3D wireframe visuals on raw HTML5 canvas."
-          tags={["WebGL", "HTML5 Canvas", "Linear Algebra", "Matrix Math", "CSS 3D"]}
+          title="3D Web Experiences"
+          subtitle="Interactive Visuals"
+          description="Elevating your brand above the competition with cutting-edge 3D web graphics, interactive animations, and immersive browser experiences that captivate users."
+          tags={["WebGL", "Three.js", "Canvas Animations", "CSS 3D", "UI Motion"]}
           glowColor="emerald"
         >
           {/* Custom interactive UI: Mini canvas revolving structure */}
@@ -230,10 +230,10 @@ export default function TechGrid() {
 
         {/* Card 4: DevOps & Cloud Nodes */}
         <BentoCard
-          title="Distributed Networks"
-          subtitle="Cloud & Scalability"
-          description="Configuring automated build paths, container grids, server clusters, reverse proxy systems, and secure TLS handshake pipelines."
-          tags={["Docker", "AWS Cloud", "Edge Workers", "Redis Cache", "CI/CD"]}
+          title="Cloud Infrastructure"
+          subtitle="Secure & Reliable"
+          description="Deploying on world-class cloud infrastructure. We handle the complex server environments, ensuring your application scales effortlessly as your business grows."
+          tags={["Cloud Servers", "Docker", "Edge Hosting", "Database Scaling", "CI/CD"]}
           glowColor="amber"
         >
           {/* Custom interactive UI: Cloud Node Grid state */}

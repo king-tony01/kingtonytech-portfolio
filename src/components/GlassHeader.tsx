@@ -1,18 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import styles from "./GlassHeader.module.css";
 
 export default function GlassHeader() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      setIsScrolled(window.scrollY > 20);
+      if (window.scrollY < 200) {
+        setActiveSection("");
       }
     };
 
@@ -20,13 +22,51 @@ export default function GlassHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
+
+    const sections = document.querySelectorAll("section[id], div[id='terminal']");
+    sections.forEach((sec) => observer.observe(sec));
+    return () => observer.disconnect();
+  }, [pathname]);
+
   const navItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Core Tech", href: "/#capabilities" },
-    { label: "Projects", href: "/projects" },
-    { label: "CLI Console", href: "/#terminal" },
+    { label: "Home", href: "/", id: "" },
+    { label: "About", href: "/about", id: "" },
+    { label: "Services", href: "/#services", id: "services" },
+    { label: "Projects", href: "/projects", id: "" },
+    { label: "CLI Console", href: "/#terminal", id: "terminal" },
+    { label: "Contact", href: "/contact", id: "" },
   ];
+
+  const checkIsActive = (item: { href: string; id: string }) => {
+    if (pathname !== "/") {
+      return pathname === item.href;
+    }
+    // On the homepage:
+    if (item.id) {
+      return activeSection === item.id;
+    }
+    // Home link
+    if (item.href === "/") {
+      return activeSection === "";
+    }
+    return false;
+  };
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
@@ -62,7 +102,7 @@ export default function GlassHeader() {
             <a
               key={item.label}
               href={item.href}
-              className={styles.navLink}
+              className={`${styles.navLink} ${checkIsActive(item) ? styles.activeNavLink : ""}`}
             >
               {item.label}
             </a>
@@ -71,7 +111,7 @@ export default function GlassHeader() {
 
         {/* Contact/CTA Button */}
         <div className={styles.rightSide}>
-          <a href="#terminal" className="btn-secondary">
+          <a href="/contact" className="btn-secondary">
             Initialize Contact
           </a>
         </div>
@@ -102,14 +142,14 @@ export default function GlassHeader() {
               key={item.label}
               href={item.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={styles.mobileLink}
+              className={`${styles.mobileLink} ${checkIsActive(item) ? styles.activeMobileLink : ""}`}
             >
               {item.label}
             </a>
           ))}
           <div className={styles.mobileCta}>
             <a
-              href="#terminal"
+              href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className="btn-secondary"
               style={{ display: "block", width: "100%" }}

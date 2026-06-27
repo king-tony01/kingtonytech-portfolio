@@ -7,9 +7,23 @@ import InteractiveControls from "../components/InteractiveControls";
 import TechGrid from "../components/TechGrid";
 import ProjectShowcase from "../components/ProjectShowcase";
 import TerminalPlayground from "../components/TerminalPlayground";
+import MatrixBackground from "../components/MatrixBackground";
+import ServicesSection from "@/components/ServicesSection";
 import styles from "./page.module.css";
+import Link from "next/link";
 
-export default function HomeClient() {
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  tags: string;
+  imageUrl: string | null;
+  githubUrl: string | null;
+  liveUrl: string | null;
+}
+
+export default function HomeClient({ recentProjects = [] }: { recentProjects?: Project[] }) {
   // 3D Canvas environment states
   const [shape, setShape] = useState<ShapeType>("icosahedron");
   const [speed, setSpeed] = useState(1.0);
@@ -45,26 +59,41 @@ export default function HomeClient() {
           {/* Left Side: Bold Copywriting */}
           <div className={styles.heroContent}>
             
-            {/* Status Badge */}
-            <div className={styles.heroBadge}>
-              <span className={styles.badgePulse} />
-              <span className={styles.badgeText}>
-                KingTony Technologies — LIVE DEPLOYMENT
-              </span>
-            </div>
+
 
             <div className={styles.heroHeadingGroup}>
               <h1 className={styles.heroTitle}>
-                Okolie Amauche Anthony
+                Architecting Digital Elevation.
               </h1>
               <h2 className={styles.heroSubtitle}>
-                Founder & Core Systems Architect
+                Premium Software & Brand Engineering
               </h2>
             </div>
 
             <p className={styles.heroDesc}>
-              Engineering high-performance distributed systems, compile-safe backend microservices, and stunning GPU-accelerated 3D vector visualizations. Developing digital solutions that balance mathematical precision with state-of-the-art visual art.
+              KingTony Technologies is a full-spectrum digital agency engineering high-performance software, immersive 3D web experiences, and premium corporate identities. We balance mathematical precision with state-of-the-art visual design to build robust tech companies from the ground up.
             </p>
+
+            {/* Social Links */}
+            <div className={styles.heroSocials}>
+              <a href="https://github.com/king-tony01" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/kingtony-technologies" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="https://x.com/AmucheOkolie" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="X (Twitter)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+            </div>
 
             {/* Call to Actions */}
             <div className={styles.heroActions}>
@@ -88,26 +117,26 @@ export default function HomeClient() {
             <div className={styles.heroMetrics}>
               <div className={styles.metricItem}>
                 <span className={`${styles.metricValue} ${styles.metricValueEmerald}`}>
-                  &lt; 2ms
+                  100%
                 </span>
                 <span className={styles.metricLabel}>
-                  DNS Cache Uptime
+                  Scalable Architecture
                 </span>
               </div>
               <div className={styles.metricItem}>
                 <span className={`${styles.metricValue} ${styles.metricValueAmber}`}>
-                  60.0fps
+                  E2E
                 </span>
                 <span className={styles.metricLabel}>
-                  WebGL 3D Render Loop
+                  Product Delivery
                 </span>
               </div>
               <div className={styles.metricItem}>
                 <span className={styles.metricValue}>
-                  100%
+                  99.9%
                 </span>
                 <span className={styles.metricLabel}>
-                  Type-Safe Core (Rust)
+                  Infrastructure Uptime
                 </span>
               </div>
             </div>
@@ -121,6 +150,7 @@ export default function HomeClient() {
 
       {/* BIO / ABOUT SECTION */}
       <section id="about" className={styles.aboutSection}>
+        <MatrixBackground opacity={0.08} />
         <div className={styles.aboutLayout}>
           {/* Image/Illustration panel */}
           <div className={styles.aboutCard}>
@@ -133,11 +163,11 @@ export default function HomeClient() {
             </div>
             
             <div className={styles.aboutDetails}>
-              <div className={styles.detailRow}><span>NAME:</span> Okolie Amauche Anthony</div>
-              <div className={styles.detailRow}><span>TITLE:</span> Founder of KingTony Technologies</div>
-              <div className={styles.detailRow}><span>EXPERIENCE:</span> 7+ Years Core Systems & Web Architecture</div>
-              <div className={styles.detailRow}><span>PHILOSOPHY:</span> Craft software with the meticulous rigor of engineering and the elegance of high art. Speed is paramount. Memory safety is absolute.</div>
-              <div className={styles.detailRow}><span>STATUS:</span> Actively accepting select, high-priority consulting commissions and architect roles.</div>
+              <div className={styles.detailRow}><span>SYS_ADMIN:</span> Okolie Amauche Anthony</div>
+              <div className={styles.detailRow}><span>ORGANIZATION:</span> KingTony Technologies</div>
+              <div className={styles.detailRow}><span>CORE_FOCUS:</span> Product Design, Corporate Branding, 3D Graphics & Enterprise Registrations.</div>
+              <div className={styles.detailRow}><span>DIRECTIVE:</span> Build robust digital identities and scalable web architectures. Engineering the perfect intersection of premium brand aesthetics and technical precision.</div>
+              <div className={styles.detailRow}><span>SYS_STATUS:</span> Actively accepting high-tier digital agency commissions and branding projects.</div>
             </div>
 
             <div className={styles.aboutCardFooter}>
@@ -149,20 +179,38 @@ export default function HomeClient() {
           {/* Description text */}
           <div className={styles.aboutDescGroup}>
             <span className={styles.aboutCategory}>
-              Creative Philosophy
+              Agency Philosophy
             </span>
             <h3 className={styles.aboutHeading}>
-              Bridging Machine Precision with High-Fidelity Design.
+              Bridging Brand Identity with High-Fidelity Engineering.
             </h3>
             <p className={styles.aboutDesc}>
-              At **KingTony Technologies**, we believe that software architecture shouldn't hide under the hood. Great engineering is visually distinct, incredibly performant, and delightful to interact with. Whether constructing compiler-safe background gateways in Rust, orchestrating high-traffic nodes in Go, or crafting fully interactive WebGL canvases in Next.js, our standard remains uncompromised.
+              At **KingTony Technologies**, we believe that a brand's digital presence shouldn't just exist—it should captivate. We are a full-spectrum digital agency that merges world-class product design with uncompromising software architecture. From crafting stunning corporate identities to engineering scalable web infrastructure, we handle the entire lifecycle of your digital business.
             </p>
             <p className={styles.aboutDesc}>
-              Every detail of this portfolio—from the custom projection formulas rotating in 3D to the low-latency retro SSH terminal shell—has been designed to express Okolie Amauche Anthony's dedication to code excellence and state-of-the-art web art.
+              Led by Okolie Amauche Anthony, our agency doesn't just write code or design logos; we build modern tech companies. With our seamless incorporation of business registration (RC) services alongside high-end UI/UX and 3D graphics, we take your vision from a legal entity directly to a state-of-the-art digital deployment.
             </p>
           </div>
         </div>
       </section>
+
+      {/* DIGITAL AGENCY SERVICES SECTION */}
+      <ServicesSection />
+
+      {/* LATEST PROJECTS SECTION */}
+      <div style={{ paddingBottom: '80px' }}>
+        <ProjectShowcase projects={recentProjects} />
+        
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '24px' }}>
+          <Link href="/projects" className="btn-secondary" style={{ padding: '12px 32px', fontSize: '16px' }}>
+            View All Projects
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </Link>
+        </div>
+      </div>
 
       {/* CORE CAPABILITIES SECTION (Bento Grid) */}
       <TechGrid />
@@ -245,8 +293,12 @@ export default function HomeClient() {
               GITHUB
             </a>
             <span className={styles.footerDivider}>/</span>
-            <a href="mailto:amaucheanthony4@gmail.com" className={`${styles.socialLink} ${styles.socialLinkMail}`}>
+            <a href="mailto:kingtony3825@gmail.com" className={`${styles.socialLink} ${styles.socialLinkMail}`}>
               EMAIL
+            </a>
+            <span className={styles.footerDivider}>/</span>
+            <a href="tel:+2349063213825" className={styles.socialLink}>
+              CALL
             </a>
             <span className={styles.footerDivider}>/</span>
             <a href="#hero" className={styles.socialLink}>
