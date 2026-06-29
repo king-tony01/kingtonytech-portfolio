@@ -97,7 +97,7 @@ export default function HomeClient({ recentProjects = [] }: { recentProjects?: P
 
             {/* Call to Actions */}
             <div className={styles.heroActions}>
-              <a href="#playground" className="btn-primary">
+              <a href="#playground" className={`btn-primary ${styles.hideOnMobile}`}>
                 Initialize Playground
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <circle cx="12" cy="12" r="10" />

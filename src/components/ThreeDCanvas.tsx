@@ -79,6 +79,10 @@ export default function ThreeDCanvas({
       vertices = [];
       edges = [];
 
+      if (window.innerWidth < 768) {
+        return;
+      }
+
       if (currentShape === "icosahedron") {
         // Golden ratio
         const t = (1 + Math.sqrt(5)) / 2;
@@ -302,6 +306,7 @@ export default function ThreeDCanvas({
     const handleResize = () => {
       width = canvas.width = canvas.offsetWidth;
       height = canvas.height = canvas.offsetHeight;
+      generateGeometry(shape);
     };
     window.addEventListener("resize", handleResize);
 
