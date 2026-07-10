@@ -56,14 +56,6 @@ export const metadata: Metadata = {
       "Explore the interactive 3D engineering portfolio of Okolie Amauche Anthony, Founder of KingTony Technologies. Low-latency systems and WebGL visualizations.",
     url: "https://kingtonytech-portfolio.vercel.app",
     siteName: "KingTony Technologies",
-    images: [
-      {
-        url: "/kingtonytech-og.png",
-        width: 1200,
-        height: 630,
-        alt: "KingTony Technologies Interactive 3D Portfolio Banner",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -73,7 +65,6 @@ export const metadata: Metadata = {
       "Okolie Amauche Anthony | Founder & Core Systems Architect | KingTony Technologies",
     description:
       "Explore the interactive 3D engineering portfolio of Okolie Amauche Anthony, Founder of KingTony Technologies. Low-latency systems and WebGL visualizations.",
-    images: ["/kingtonytech-og.png"],
   },
 };
 
